@@ -23,7 +23,7 @@ def predict_price(payload):
 def home():
     return render_template("index.html")
 
-@app.route("/predict", methods="POST")
+@app.route("/predict", methods = ["POST"])
 def predict():
     try:
         area = float(request.form.get("Area", "").strip())

@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
     <title>Property Price Predict</title>
 </head>
 <body>
@@ -34,7 +36,7 @@
                         {% endif %}
     </form>
 
-    <h3>JSON API</h3>
+    <!-- <h3>JSON API</h3>
     <p>POST <code>/api/predict</code> with: </p>
     <pre>{
         "Area": 1000,
@@ -46,8 +48,74 @@
     <pre>{
         "Prediction": 85.12,
         "units": "lakhs"}
-    </pre>
+    </pre> -->
 
 </body>
 </html>
     
+
+
+
+     <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Price Predict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Property Price Predictor</h1>
+        <p>Enter Details and get Prediction (units: <strong>{{ unit_label or "lakhs" }}</strong>).</p>
+
+        <form method="post" action="/predict" novalidate>
+            <label for="Area">Area (sq ft)</label>
+            <input id="Area" name="Area" type="number" step="0.01" min="100" required
+                value="{{ (last_input.Area if last_input else '') or '' }}" placeholder="e.g., 1000">
+
+            <label for="Bedrooms">Bedrooms</label>
+            <input id="Bedrooms" name="Bedrooms" type="number" step="1" min="1" required
+                value="{{ (last_input.Bedrooms if last_input else '') or '' }}" placeholder="e.g., 3">
+
+            <label for="Age">Age (Years)</label>
+            <input id="Age" name="Age" type="number" step="1" min="0" required
+                value="{{ (last_input.Age if last_input else '') or '' }}" placeholder="e.g., 8">
+
+            <button type="submit">Predict Price</button>
+
+            <p class="note">Model Features: <code>Area</code>, <code>Bedrooms</code>, <code>Age</code></p>
+
+            {% if result %}
+            <p class="result">Predicted Price: <strong>{{ result }}</strong> {{ unit_label or "lakhs" }}</p>
+            {% endif %}
+
+            {% if error %}
+            <p class="error">Oops: {{ error }}</p>
+            {% endif %}
+        </form>
+
+        <h3>JSON API Example</h3>
+        <p>POST <code>/api/predict</code> with:</p>
+
+        <div class="json-section">
+            <span class="json-brace">{</span><br>
+            &nbsp;&nbsp;<span class="json-key">"Area"</span>: <span class="json-number">1000</span>,<br>
+            &nbsp;&nbsp;<span class="json-key">"Bedrooms"</span>: <span class="json-number">3</span>,<br>
+            &nbsp;&nbsp;<span class="json-key">"Age"</span>: <span class="json-number">8</span><br>
+            <span class="json-brace">}</span>
+        </div>
+
+        <p>Response:</p>
+
+        <div class="json-section">
+            <span class="json-brace">{</span><br>
+            &nbsp;&nbsp;<span class="json-key">"Prediction"</span>: <span class="json-number">85.12</span>,<br>
+            &nbsp;&nbsp;<span class="json-key">"units"</span>: <span class="json-string">"lakhs"</span><br>
+            <span class="json-brace">}</span>
+        </div>
+
+    </div>
+</body>
+</html> -->
